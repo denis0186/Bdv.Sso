@@ -7,6 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Configure web api
+Bdv.Sso.WebApi.Dependencies.Configure(builder.Services);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
