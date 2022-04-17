@@ -8,18 +8,18 @@ namespace Bdv.Sso.Domain.Entities
         /// User login
         /// </summary>
         [Column("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// User phone
         /// </summary>
         [Column("phone")]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         /// <summary>
         /// User login
         /// </summary>
         [Column("login")]
-        public string Login { get; set; }
+        public string? Login { get; set; }
     }
 }

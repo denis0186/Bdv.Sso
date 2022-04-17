@@ -11,7 +11,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Bdv.Domain" Version="1.0.0" />
+		<PackageReference Include="MediatR" Version="10.0.1" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bdv.Sso.Queries\Bdv.Sso.Queries.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bdv.Sso.Queries;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Bdv.Sso.WebApi
 {
@@ -11,7 +8,7 @@ namespace Bdv.Sso.WebApi
     {
         public static void Configure(IServiceCollection services)
         {
-
+            services.AddMediatR(typeof(IMediatorQuery));
         }
     }
 }

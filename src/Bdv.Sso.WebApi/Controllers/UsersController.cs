@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bdv.Domain.Dto.Sso;
+using Bdv.Sso.Queries.Users;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bdv.Sso.WebApi.Controllers
 {
@@ -11,6 +9,21 @@ namespace Bdv.Sso.WebApi.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public UsersController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
         
+        /// <summary>
+        /// Retrieve users list
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public Task<IEnumerable<UserDto>> GetUsers([FromQuery] GetUsersRequest request)
+        {
+            return _mediator.Send(request);
+        }
     }
 }
