@@ -1,0 +1,21 @@
+version: '3.4'
+
+volumes:
+  database_data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+    volumes:
+      - database_data:/var/lib/postgresql/data
+  bdv.sso.webapp:
+    image: ${DOCKER_REGISTRY-}bdvssowebapp
+    build:
+      context: .
+      dockerfile: src/Bdv.Sso.WebApp/Dockerfile

@@ -7,10 +7,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Bdv.Sso.WebApp/Bdv.Sso.WebApp.csproj", "Bdv.Sso.WebApp/"]
-RUN dotnet restore "Bdv.Sso.WebApp/Bdv.Sso.WebApp.csproj"
+COPY ["nuget.config", "."]
+COPY ["src/Bdv.Sso.WebApp/Bdv.Sso.WebApp.csproj", "src/Bdv.Sso.WebApp/"]
+COPY ["src/Bdv.Sso.WebApi/Bdv.Sso.WebApi.csproj", "src/Bdv.Sso.WebApi/"]
+COPY ["src/Bdv.Sso.Queries/Bdv.Sso.Queries.csproj", "src/Bdv.Sso.Queries/"]
+RUN dotnet restore "src/Bdv.Sso.WebApp/Bdv.Sso.WebApp.csproj"
 COPY . .
-WORKDIR "/src/Bdv.Sso.WebApp"
+WORKDIR "/src/src/Bdv.Sso.WebApp"
 RUN dotnet build "Bdv.Sso.WebApp.csproj" -c Release -o /app/build
 
 FROM build AS publish

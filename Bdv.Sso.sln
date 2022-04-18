@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdv.Sso.DataAccess", "src\B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdv.Sso.WebApi", "src\Bdv.Sso.WebApi\Bdv.Sso.WebApi.csproj", "{3CC6C493-082C-4A08-B999-6507C991C988}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bdv.Sso.Queries", "src\Bdv.Sso.Queries\Bdv.Sso.Queries.csproj", "{AF8C8CE2-3BD1-4459-9598-B3CB7F1E351F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdv.Sso.Queries", "src\Bdv.Sso.Queries\Bdv.Sso.Queries.csproj", "{AF8C8CE2-3BD1-4459-9598-B3CB7F1E351F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F6F1B96C-4748-4856-9515-48659ADBAFA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{AF8C8CE2-3BD1-4459-9598-B3CB7F1E351F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF8C8CE2-3BD1-4459-9598-B3CB7F1E351F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF8C8CE2-3BD1-4459-9598-B3CB7F1E351F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6F1B96C-4748-4856-9515-48659ADBAFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6F1B96C-4748-4856-9515-48659ADBAFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6F1B96C-4748-4856-9515-48659ADBAFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6F1B96C-4748-4856-9515-48659ADBAFA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
