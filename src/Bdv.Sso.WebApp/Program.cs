@@ -8,7 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Configure web api
-Bdv.Sso.WebApi.Dependencies.Configure(builder.Services);
+Bdv.Sso.WebApi.Dependencies.Configure(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 

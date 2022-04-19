@@ -15,9 +15,11 @@
 		<PackageReference Include="MediatR" Version="10.0.1" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Bdv.Sso.DataAccess\Bdv.Sso.DataAccess.csproj" />
 	  <ProjectReference Include="..\Bdv.Sso.Queries\Bdv.Sso.Queries.csproj" />
 	</ItemGroup>
 
