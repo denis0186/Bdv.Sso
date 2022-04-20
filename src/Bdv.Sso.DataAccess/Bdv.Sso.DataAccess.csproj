@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bdv.Sso.Domain\Bdv.Sso.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

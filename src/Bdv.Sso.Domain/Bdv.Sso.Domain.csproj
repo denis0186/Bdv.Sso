@@ -11,4 +11,8 @@
     <Folder Include="Enums\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Bdv.Domain" Version="6.0.17" />
+  </ItemGroup>
+
 </Project>
