@@ -1,10 +1,13 @@
-﻿using Bdv.Domain.Abstractions;
-using Bdv.Domain.Abstractions.Sso;
+﻿using Bdv.Domain.Abstractions.Sso;
 using Bdv.Domain.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bdv.Sso.Domain.Entities
 {
+    /// <summary>
+    /// User entity
+    /// </summary>
+    [Table("users")]
     public class User : EntityBase<Guid>, IUser
     {
         /// <summary>
@@ -29,13 +32,13 @@ namespace Bdv.Sso.Domain.Entities
         /// User hashed password
         /// </summary>
         [Column("password")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         /// <summary>
         /// Password salt
         /// </summary>
         [Column("password_salt")]
-        public string PasswordSalt { get; set; }
+        public string? PasswordSalt { get; set; }
 
         /// <summary>
         /// If user should change password after next login

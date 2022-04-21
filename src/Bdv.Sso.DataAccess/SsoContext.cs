@@ -14,6 +14,7 @@ namespace Bdv.Sso.DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().HasKey(x => x.Id);
+            modelBuilder.Entity<User>().HasData(new[] { new User { Id = Guid.NewGuid(), Login = "admin", IsNeedChangePassword = true } });
         }
     }
 }

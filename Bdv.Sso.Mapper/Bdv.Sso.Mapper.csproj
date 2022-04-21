@@ -7,12 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\" />
-    <Folder Include="Enums\" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bdv.Domain" Version="6.0.18" />
+    <ProjectReference Include="..\src\Bdv.Sso.Domain\Bdv.Sso.Domain.csproj" />
   </ItemGroup>
 
 </Project>
