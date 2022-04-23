@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "migrations", "migrations", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdv.Sso.Migrations", "src\Bdv.Sso.Migrations\Bdv.Sso.Migrations.csproj", "{278948F4-891C-451D-9FF7-6822727C7A2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bdv.Sso.Mapper", "Bdv.Sso.Mapper\Bdv.Sso.Mapper.csproj", "{C7D1A458-AFC6-4551-B393-E7D81123ADD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bdv.Sso.Mapper", "src\Bdv.Sso.Mapper\Bdv.Sso.Mapper.csproj", "{C7D1A458-AFC6-4551-B393-E7D81123ADD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

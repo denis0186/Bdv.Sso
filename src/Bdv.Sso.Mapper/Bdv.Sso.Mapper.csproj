@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Bdv.Sso.Domain\Bdv.Sso.Domain.csproj" />
+    <ProjectReference Include="..\Bdv.Sso.Domain\Bdv.Sso.Domain.csproj" />
   </ItemGroup>
 
 </Project>
