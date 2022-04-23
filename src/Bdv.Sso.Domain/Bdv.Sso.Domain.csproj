@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bdv.Domain" Version="6.0.18" />
+    <PackageReference Include="Bdv.Domain" Version="6.0.19" />
   </ItemGroup>
 
 </Project>
