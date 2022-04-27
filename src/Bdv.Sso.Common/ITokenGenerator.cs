@@ -4,8 +4,8 @@ namespace Bdv.Sso.Common
 {
     public interface ITokenGenerator
     {
-        Task<string> GenerateAccessTokenAsync(User user);
+        string GenerateAccessTokenAsync(User user);
 
-        Task<string> GenerateRefreshTokenAsync(User user, string accessToken);
+        string GenerateRefreshTokenAsync();
     }
 }
