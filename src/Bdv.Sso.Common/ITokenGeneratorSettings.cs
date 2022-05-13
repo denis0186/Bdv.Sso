@@ -11,11 +11,6 @@
         public string RsaPrivateKey { get; }
 
         /// <summary>
-        /// RSA public key
-        /// </summary>
-        public string RsaPublicKey { get; }
-
-        /// <summary>
         /// Audience
         /// </summary>
         string Audience { get; }

@@ -12,8 +12,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-		<PackageReference Include="Bdv.DataAccess" Version="6.0.20" />
-		<PackageReference Include="Bdv.Domain" Version="6.0.20" />
+		<PackageReference Include="Bdv.DataAccess" Version="6.0.22" />
+		<PackageReference Include="Bdv.Domain" Version="6.0.22" />
 		<PackageReference Include="MediatR" Version="10.0.1" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Bdv.Sso.Commands\Bdv.Sso.Commands.csproj" />
 	  <ProjectReference Include="..\Bdv.Sso.DataAccess\Bdv.Sso.DataAccess.csproj" />
 	  <ProjectReference Include="..\Bdv.Sso.Mapper\Bdv.Sso.Mapper.csproj" />
 	  <ProjectReference Include="..\Bdv.Sso.Migrations\Bdv.Sso.Migrations.csproj" />

@@ -22,7 +22,9 @@ namespace Bdv.Sso.WebApi
                 x => x.MigrationsAssembly("Bdv.Sso.Migrations")));
 
             //Data access
-            services.AddTransient<IRepository, EntityFrameworkRepository<SsoContext>>();
+            services
+                .AddSingleton<IRepository, DbContextRepository<SsoContext>>()
+                .AddSingleton<ICrudService, DbContextCrudService<SsoContext>>();
 
             //Mapper
             services.AddAutoMapper(typeof(SsoProfile));

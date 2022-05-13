@@ -25,5 +25,11 @@ namespace Bdv.Sso.WebApi.Controllers
         {
             return _mediator.Send(request);
         }
+
+        [HttpGet("{id}")]
+        public Task<UserDto> GetUser([FromRoute] Guid id)
+        {
+            return null;
+        }
     }
 }
