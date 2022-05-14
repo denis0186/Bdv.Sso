@@ -29,7 +29,7 @@ namespace Bdv.Sso.Commands.Account
                 throw GetUserOrPasswordNotFoundException();
             }
 
-            var accessToken = _tokenGenerator.GenerateAccessTokenAsync(user);
+            var accessToken = await _tokenGenerator.GenerateAccessTokenAsync(user);
             return new TokenDto
             {
                 AccessToken = accessToken,

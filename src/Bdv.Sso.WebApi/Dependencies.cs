@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Bdv.DataAccess;
 using Bdv.DataAccess.Impl.EntityFramework;
 using Bdv.Sso.Mapper;
+using Bdv.Sso.Common;
+using Bdv.Sso.Common.Impl;
+using Bdv.Sso.Commands;
 
 namespace Bdv.Sso.WebApi
 {
@@ -15,7 +18,7 @@ namespace Bdv.Sso.WebApi
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
             //SQRS support
-            services.AddMediatR(typeof(IMediatorQuery));
+            services.AddMediatR(typeof(IMediatorQuery), typeof(IMediatorCommand));
 
             //Database context
             services.AddDbContext<SsoContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("sso-db"),
@@ -23,11 +26,20 @@ namespace Bdv.Sso.WebApi
 
             //Data access
             services
-                .AddSingleton<IRepository, DbContextRepository<SsoContext>>()
-                .AddSingleton<ICrudService, DbContextCrudService<SsoContext>>();
+                .AddTransient<IRepository, DbContextRepository<SsoContext>>()
+                .AddTransient<ICrudService, DbContextCrudService<SsoContext>>();
 
             //Mapper
             services.AddAutoMapper(typeof(SsoProfile));
+
+            //Settings
+            var appSettings = new AppSettings(configuration);
+            services.AddSingleton<ITokenGeneratorSettings>(appSettings);
+
+            //Services
+            services
+                .AddSingleton<ITokenGenerator, JwtTokenGenerator>()
+                .AddSingleton<IPasswordHasher, Md5PasswordHasher>();
         }
     }
 }

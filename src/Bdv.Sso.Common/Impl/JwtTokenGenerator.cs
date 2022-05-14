@@ -1,4 +1,5 @@
-﻿using Bdv.Sso.Domain.Entities;
+﻿using Bdv.Sso.Common.Cryptography;
+using Bdv.Sso.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -15,17 +16,10 @@ namespace Bdv.Sso.Common.Impl
             _settings = settings;
         }
 
-        public string GenerateAccessTokenAsync(User user)
+        public async Task<string> GenerateAccessTokenAsync(User user)
         {
-            if (string.IsNullOrEmpty(_settings.RsaPrivateKey))
-            {
-                throw new ArgumentException("RSA private key wasn't provided");
-            }
-
-            var privateKey = Convert.FromBase64String(_settings.RsaPrivateKey);
-            using var rsa = RSA.Create();
-            rsa.ImportRSAPrivateKey(privateKey, out _);
-            var signingCredentials = new SigningCredentials(new RsaSecurityKey(rsa), SecurityAlgorithms.RsaSha256)
+            var key = await RsaHelper.GetPrivateKeyAsync(_settings.RsaPrivateKey);
+            var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256)
             {
                 CryptoProviderFactory = new CryptoProviderFactory { CacheSignatureProviders = false }
             };
@@ -34,7 +28,7 @@ namespace Bdv.Sso.Common.Impl
             var unixTimeSeconds = new DateTimeOffset(now).ToUnixTimeSeconds();
 
             var jwt = new JwtSecurityToken(
-                audience: _settings.Audience,
+                audience: $"user:{user.Id}",
                 issuer: _settings.Issuer,
                 claims: new Claim[] {
                     new Claim(JwtRegisteredClaimNames.Iat, unixTimeSeconds.ToString(), ClaimValueTypes.Integer64),
@@ -48,7 +42,7 @@ namespace Bdv.Sso.Common.Impl
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        public string GenerateRefreshTokenAsync()
+        public string GenerateRefreshToken()
         {
             throw new NotImplementedException();
         }

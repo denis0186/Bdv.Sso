@@ -6,14 +6,9 @@
     public interface ITokenGeneratorSettings
     {
         /// <summary>
-        /// RSA private key
+        /// RSA private key (path to xml file)
         /// </summary>
         public string RsaPrivateKey { get; }
-
-        /// <summary>
-        /// Audience
-        /// </summary>
-        string Audience { get; }
 
         /// <summary>
         /// Issuer

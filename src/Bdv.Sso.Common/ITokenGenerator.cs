@@ -4,8 +4,17 @@ namespace Bdv.Sso.Common
 {
     public interface ITokenGenerator
     {
-        string GenerateAccessTokenAsync(User user);
+        /// <summary>
+        /// Generate access token
+        /// </summary>
+        /// <param name="user">User</param>
+        /// <returns></returns>
+        Task<string> GenerateAccessTokenAsync(User user);
 
-        string GenerateRefreshTokenAsync();
+        /// <summary>
+        /// Generate refresh token
+        /// </summary>
+        /// <returns></returns>
+        string GenerateRefreshToken();
     }
 }
