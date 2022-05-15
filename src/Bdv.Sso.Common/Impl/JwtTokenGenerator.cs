@@ -1,24 +1,27 @@
-﻿using Bdv.Sso.Common.Cryptography;
+﻿using Bdv.Common;
 using Bdv.Sso.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 
 namespace Bdv.Sso.Common.Impl
 {
     public class JwtTokenGenerator : ITokenGenerator
     {
         private readonly ITokenGeneratorSettings _settings;
+        private readonly IRsaKeyReader _rsaKeyReader;
 
-        public JwtTokenGenerator(ITokenGeneratorSettings settings)
+        public JwtTokenGenerator(
+            ITokenGeneratorSettings settings,
+            IRsaKeyReader rsaKeyReader)
         {
             _settings = settings;
+            _rsaKeyReader = rsaKeyReader;
         }
 
         public async Task<string> GenerateAccessTokenAsync(User user)
         {
-            var key = await RsaHelper.GetPrivateKeyAsync(_settings.RsaPrivateKey);
+            var key = await _rsaKeyReader.GetPrivateKeyAsync(_settings.RsaPrivateKey);
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256)
             {
                 CryptoProviderFactory = new CryptoProviderFactory { CacheSignatureProviders = false }

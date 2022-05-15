@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="Bdv.DataAccess" Version="6.0.22" />
-    <PackageReference Include="Bdv.Domain" Version="6.0.22" />
+    <PackageReference Include="Bdv.DataAccess" Version="6.0.25" />
+    <PackageReference Include="Bdv.Domain" Version="6.0.25" />
     <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 

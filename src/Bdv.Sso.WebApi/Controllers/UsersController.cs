@@ -1,7 +1,7 @@
-﻿using Bdv.Domain.Dto.Sso;
+﻿using Bdv.Authentication.Attributes;
+using Bdv.Domain.Dto.Sso;
 using Bdv.Sso.Queries.Users;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bdv.Sso.WebApi.Controllers
@@ -22,13 +22,14 @@ namespace Bdv.Sso.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
+        [Authorize("Sso.Users.GetUsers")]
         public Task<IEnumerable<UserDto>> GetUsers([FromQuery] GetUsersRequest request)
         {
             return _mediator.Send(request);
         }
 
         [HttpGet("{id}")]
+        [Authorize("Sso.Users.GetUser")]
         public Task<UserDto> GetUser([FromRoute] Guid id)
         {
             return null;

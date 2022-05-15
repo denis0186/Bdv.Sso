@@ -10,6 +10,7 @@ using Bdv.Sso.Mapper;
 using Bdv.Sso.Common;
 using Bdv.Sso.Common.Impl;
 using Bdv.Sso.Commands;
+using Bdv.Authentication;
 
 namespace Bdv.Sso.WebApi
 {
@@ -34,7 +35,9 @@ namespace Bdv.Sso.WebApi
 
             //Settings
             var appSettings = new AppSettings(configuration);
-            services.AddSingleton<ITokenGeneratorSettings>(appSettings);
+            services
+                .AddSingleton<ITokenGeneratorSettings>(appSettings)
+                .AddSingleton<ITokenValidationSettings>(appSettings);
 
             //Services
             services

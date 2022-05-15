@@ -1,6 +1,5 @@
-using Bdv.Sso.Common.Cryptography;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using Bdv.Authentication;
+using Bdv.Authentication.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,12 +13,12 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
-        Name = "Authorization",
+        Name = "Token",
         Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
+        Scheme = BdvAuthenticationConstants.AuthenticationScheme,
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
+        Description = "JWT Token",
     });
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -38,19 +37,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 //Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateLifetime = true,
-        ValidateAudience = false,
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["Token:Issuer"],
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = RsaHelper.GetPublicKey(builder.Configuration["Token:RsaPublicKey"])
-    };
-});
+builder.Services.AddBdvAuthentication();
 
 //Configure web api
 Bdv.Sso.WebApi.Dependencies.Configure(builder.Services, builder.Configuration);
