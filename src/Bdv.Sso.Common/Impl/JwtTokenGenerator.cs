@@ -27,7 +27,7 @@ namespace Bdv.Sso.Common.Impl
                 CryptoProviderFactory = new CryptoProviderFactory { CacheSignatureProviders = false }
             };
 
-            var now = DateTime.Now;
+            var now = DateTime.UtcNow;
             var unixTimeSeconds = new DateTimeOffset(now).ToUnixTimeSeconds();
 
             var jwt = new JwtSecurityToken(
@@ -37,7 +37,6 @@ namespace Bdv.Sso.Common.Impl
                     new Claim(JwtRegisteredClaimNames.Iat, unixTimeSeconds.ToString(), ClaimValueTypes.Integer64),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 },
-                notBefore: now,
                 expires: now.AddSeconds(_settings.AccessTokenExpiry),
                 signingCredentials: signingCredentials
             );
