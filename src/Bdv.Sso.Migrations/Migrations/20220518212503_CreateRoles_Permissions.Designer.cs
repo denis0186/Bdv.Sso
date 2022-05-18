@@ -3,6 +3,7 @@ using System;
 using Bdv.Sso.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bdv.Sso.Migrations.Migrations
 {
     [DbContext(typeof(SsoContext))]
-    partial class SsoContextModelSnapshot : ModelSnapshot
+    [Migration("20220518212503_CreateRoles_Permissions")]
+    partial class CreateRoles_Permissions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
