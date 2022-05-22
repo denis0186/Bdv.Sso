@@ -9,12 +9,12 @@ namespace Bdv.Sso.Common
         /// </summary>
         /// <param name="user">User</param>
         /// <returns></returns>
-        Task<string> GenerateAccessTokenAsync(User user);
+        Task<string> GenerateAccessTokenAsync(User user, IEnumerable<Role> roles, IEnumerable<Permission> permissions);
 
         /// <summary>
         /// Generate refresh token
         /// </summary>
         /// <returns></returns>
-        string GenerateRefreshToken();
+        Task<string> GenerateRefreshTokenAsync(User user);
     }
 }

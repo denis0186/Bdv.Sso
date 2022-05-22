@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bdv.DataAccess" Version="6.0.27" />
-    <PackageReference Include="Bdv.Domain" Version="6.0.27" />
+    <PackageReference Include="Bdv.DataAccess" Version="6.0.28" />
+    <PackageReference Include="Bdv.Domain" Version="6.0.28" />
+    <PackageReference Include="Bdv.Redis" Version="6.0.28" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>

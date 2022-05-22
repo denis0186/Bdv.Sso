@@ -19,5 +19,10 @@
         /// Access token expiry (seconds)
         /// </summary>
         int AccessTokenExpiry { get; }
+
+        /// <summary>
+        /// Refresh token expiry (days)
+        /// </summary>
+        int RefreshTokenExpiry { get; }
     }
 }

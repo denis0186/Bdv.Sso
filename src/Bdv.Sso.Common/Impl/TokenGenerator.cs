@@ -6,20 +6,21 @@ using System.Security.Claims;
 
 namespace Bdv.Sso.Common.Impl
 {
-    public class JwtTokenGenerator : ITokenGenerator
+    public class TokenGenerator : ITokenGenerator
     {
         private readonly ITokenGeneratorSettings _settings;
         private readonly IRsaKeyReader _rsaKeyReader;
 
-        public JwtTokenGenerator(
+        public TokenGenerator(
             ITokenGeneratorSettings settings,
-            IRsaKeyReader rsaKeyReader)
+            IRsaKeyReader rsaKeyReader,
+            IRedisRepository)
         {
             _settings = settings;
             _rsaKeyReader = rsaKeyReader;
         }
 
-        public async Task<string> GenerateAccessTokenAsync(User user)
+        public async Task<string> GenerateAccessTokenAsync(User user, IEnumerable<Role> roles, IEnumerable<Permission> permissions)
         {
             var key = await _rsaKeyReader.GetPrivateKeyAsync(_settings.RsaPrivateKey);
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256)
@@ -36,6 +37,8 @@ namespace Bdv.Sso.Common.Impl
                 claims: new Claim[] {
                     new Claim(JwtRegisteredClaimNames.Iat, unixTimeSeconds.ToString(), ClaimValueTypes.Integer64),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim("roles", string.Join(",", roles.Select(x => x.Name).ToArray())),
+                    new Claim("permissions", string.Join(",", permissions.Select(x => x.Name).ToArray()))
                 },
                 expires: now.AddSeconds(_settings.AccessTokenExpiry),
                 signingCredentials: signingCredentials
@@ -44,9 +47,14 @@ namespace Bdv.Sso.Common.Impl
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        public string GenerateRefreshToken()
+        public async Task<string> GenerateRefreshTokenAsync(User user)
         {
-            throw new NotImplementedException();
+            await _redisRepository.SetAsync(
+                $"refresh_token:{refreshToken}:string",
+                new UserLoginInfoDto { UserId = user.Id, UserAgent = _httpContextAccessor.HttpContext.Request.Headers["User-Agent"] },
+                TimeSpan.FromDays(7));
+
+            return Guid.NewGuid().ToString().Replace("-", string.Empty);
         }
     }
 }

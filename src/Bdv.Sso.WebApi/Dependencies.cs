@@ -41,7 +41,7 @@ namespace Bdv.Sso.WebApi
 
             //Services
             services
-                .AddSingleton<ITokenGenerator, JwtTokenGenerator>()
+                .AddSingleton<ITokenGenerator, TokenGenerator>()
                 .AddSingleton<IPasswordHasher, Md5PasswordHasher>();
         }
     }

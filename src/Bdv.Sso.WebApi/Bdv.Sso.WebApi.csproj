@@ -12,9 +12,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-		<PackageReference Include="Bdv.Authentication" Version="6.0.27" />
-		<PackageReference Include="Bdv.DataAccess" Version="6.0.27" />
-		<PackageReference Include="Bdv.Domain" Version="6.0.27" />
+		<PackageReference Include="Bdv.Authentication" Version="6.0.28" />
+		<PackageReference Include="Bdv.DataAccess" Version="6.0.28" />
+		<PackageReference Include="Bdv.Domain" Version="6.0.28" />
 		<PackageReference Include="MediatR" Version="10.0.1" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
